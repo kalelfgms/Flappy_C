@@ -1,0 +1,85 @@
+<FLAPPY BIRD>
+Controls:
+Space: jump
+
+------------------------------------------------------------------
+|               #-----+++++-----#-----+++++-----#-----+++++-----#|
+|               #               #               #               #|
+|               #                               #               #|
+|               #                               #               #|
+|               #                               #                |
+|                               #               #                |
+|     @                         #               #                |
+|                               #                               #|
+|               #               #                               #|
+|               #               #                               #|
+|               #               #               #               #|
+|               #               #               #               #|
+|               #-----+++++-----#-----+++++-----#-----+++++-----#|
+------------------------------------------------------------------
+
+----------------------------------------------------------------
+|#-----+++++-----#-----+++++-----#-----+++++-----#-----+++++---|
+THERE CAN BE 4 pillars on screen when it reaches the left edge
+
+13x66
+|   -
+pillar : #, 3 wide hole, 16 char gap between pillars
+bird : @
+
+each time step move bird down one tile (time step be 0.1 or sum)
+when space pressed, move bird one up
+no horizontal movement, pillars move towards birdwhen bird hits wall/floor/ceiling, end game
+after pillar hits left wall, itll reset to the right again and have new hole height
+
+!CURRENT ISSUE
+pillar loop depends on pos of pil1. when pil1 gets reset to the right, the other pillars just dissapear
+need to make em independent, masa if statement per pillar? DONE
+no collisions and scoring yet, have game end on collision!!
+and add 10 points when going through hole DONE
+
+        for (int Y = 0; Y < TINGGI; Y++){
+            for (int X = 0; X < LEBAR; X++){
+                if (Y == 0 || Y == TINGGI - 1) {
+                    printf("-");
+                }else if (X == 0 || X == LEBAR - 1){
+                    printf("|");
+                }else if (Y == y && X == x){ // kalo i dan j di posisi awal player (var x dan y)
+                    printf("%c", PLAYER);
+                }else if (X == pil1 && Y == holep1 || Y == holep1+1 || Y == holep1+2){ // kalo i dan j di posisi awal player (var x dan y)
+                    printf ("1");
+                }else if (X == pil2 && Y == holep2 || Y == holep2+1 || Y == holep2+2){
+                    printf ("2");
+                }else if (X == pil3 && Y == holep3 || Y == holep3+1 || Y == holep3+2){
+                    printf ("3");
+                }
+                else{ printf(" "); }
+            }
+            printf("\n");
+        }
+
+        for (int Y = 0; Y < TINGGI; Y++){
+            for (int X = 0; X < LEBAR; X++){
+                if (Y == 0 || Y == TINGGI - 1) {
+                    printf("-");
+                }else if (X == 0 || X == LEBAR - 1){
+                    printf("|");
+                }else if (Y == y && X == x){ // kalo i dan j di posisi awal player (var x dan y)
+                    printf("%c", PLAYER);
+                }else if (X == pil1 || X == pil2 || X == pil3){ // kalo i dan j di posisi awal player (var x dan y)
+                    //kenapa ada kondisi dulu, dan nggk sama kondisi lain? biar misahin logika print wall sama lobang dgn print empty space
+                    if (X == pil1 && Y == holep1 || Y == holep1+1 || Y == holep1+2){ // kalo index di lobang dan 2 index dibawahnya (hasilnya lobang tinggi 3)
+                        printf ("1");
+                    }else if (X == pil2 && Y == holep2 || Y == holep2+1 || Y == holep2+2){
+                        printf ("2");
+                    }else if (X == pil3 && Y == holep3 || Y == holep3+1 || Y == holep3+2){
+                        printf ("3");
+                    }
+                    else{
+                        printf("%c", WALL);
+                    }
+                }
+                else{ printf(" "); }
+            }
+            printf("\n");
+        }

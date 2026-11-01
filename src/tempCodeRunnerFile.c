@@ -1,0 +1,1 @@
+Y == holep3 || Y == holep3+1 || Y == holep3+2
