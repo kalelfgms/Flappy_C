@@ -1,6 +1,3 @@
-//each frame theres 3 pillars
-//the three has a gap of
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -65,7 +62,7 @@ int main() {
         //game info
         printf("%s", "FLAPPY BIRD\n");
         printf("Skor: %d\n", skor);
-        printf("%s", "W = Jump | Q = Exit\n\n");
+        printf("%s", "W = Jump | Q = Quit\n\n");
 
         // draw screen
         for (int Y = 0; Y < TINGGI; Y++){
